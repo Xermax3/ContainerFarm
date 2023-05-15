@@ -1,0 +1,1 @@
+collectionview with vertical grid layout and bind each colspan to a prop

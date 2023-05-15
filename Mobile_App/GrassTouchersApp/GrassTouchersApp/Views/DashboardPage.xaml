@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GrassTouchersApp.Views.DashboardPage"
+             BackgroundColor="LightBlue">
+    <NavigationPage.TitleView>
+        <Label Text="{Binding Title, StringFormat='{0} Dashboard'}" VerticalOptions="CenterAndExpand" FontSize="Title" TextColor="White"/>
+    </NavigationPage.TitleView>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="send96.png" Command="{Binding UpdateTelemetry}"/>
+        <!--<ToolbarItem Text="Edit"/>-->
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="20" Margin="20,5,20,0">
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Select Actuator:" 
+                               FontSize="16" FontAttributes="Bold" VerticalOptions="Center" HorizontalTextAlignment="End"/>
+                        <Picker 
+                            ItemsSource="{Binding Actuators}"
+                            SelectedItem="{Binding SelectedActuator, Mode=TwoWay}"
+                            FontAttributes="Bold" FontSize="16" 
+                            WidthRequest="60"
+                            HorizontalOptions="StartAndExpand"
+                         />
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Enter State:" 
+                               FontSize="16" FontAttributes="Bold"  VerticalOptions="Center" HorizontalTextAlignment="End" />
+                        <Entry Placeholder="Type here" Text="{Binding SelectedState}" 
+                               FontSize="16" FontAttributes="Bold"/>
+                    </StackLayout>
+                </StackLayout>
+                <Frame CornerRadius="20" HasShadow="True" Padding="0" Margin="0,30">
+                    <Button Command="{Binding ControlActuator}" Text="Run" BackgroundColor="White" Margin="0"/>
+                </Frame>
+            </StackLayout>
+            <RefreshView Command="{Binding RefreshEntries}"
+                    IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+                <CollectionView 
+                        ItemsSource="{Binding Records}" 
+                        ItemsUpdatingScrollMode="KeepScrollOffset"
+                        Margin="10,0"  
+                        SelectionMode="Single" 
+                        SelectedItem="{Binding SelectedRecord, Mode=TwoWay}" SelectionChanged="OnDataSelected">
+                    <CollectionView.EmptyView>
+                        <AbsoluteLayout>
+                            <Image Source="errorcloud100.png" AbsoluteLayout.LayoutBounds="0.5,0.3,0.4,0.4" AbsoluteLayout.LayoutFlags="PositionProportional,SizeProportional"/>
+                            <Label Text="No Data" FontSize="Title" AbsoluteLayout.LayoutBounds="0.5,0.6" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                            <Label Text="Try refreshing to fetch new data" FontSize="Subtitle" AbsoluteLayout.LayoutBounds="0.5,0.68" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                        </AbsoluteLayout>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemsLayout>
+                        <!--LinearItemsLayout ItemSpacing="20" Orientation="Vertical"/-->
+                        <GridItemsLayout Span="2" Orientation="Vertical"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <Frame BorderColor="LightGray" CornerRadius="10" HasShadow="True" Padding="20" Margin="8">
+                                    <StackLayout Orientation="Vertical">
+                                        <Label Text="{Binding Field}" FontSize="Body" LineBreakMode="WordWrap" HorizontalTextAlignment="Center"/>
+                                        <Label Text="{Binding LatestStringValue}" FontSize="Large" LineBreakMode="WordWrap" HorizontalTextAlignment="Center"/>
+                                        <!--<Label Text="{Binding LatestEntryDate}" FontSize="Micro" LineBreakMode="WordWrap" HorizontalTextAlignment="Center"/>-->
+                                    </StackLayout>
+                                </Frame>
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+            <Label FontSize="Small" Margin="0,5" HorizontalOptions="Center">
+                <Label.Style>
+                    <Style TargetType="Label">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=IsConnected}" Value="True" TargetType="Label">
+                                <Setter Property="Text" Value="Connected"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Path=IsConnected}" Value="False" TargetType="Label">
+                                <Setter Property="Text" Value="Not Connected"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GrassTouchersApp.Views.LocationPage"
+             xmlns:vm="clr-namespace:GrassTouchersApp.ViewModels"
+             x:DataType="vm:FleetManagerDashboardViewModel"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             Title="Geo-Location">
+    <ContentPage.Content>
+        <AbsoluteLayout x:Name="layout">
+            <!--<maps:Map MoveToLastRegionOnLayoutChange="False" HasScrollEnabled="True" HasZoomEnabled="True"
+                AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                <x:Arguments>
+                    <maps:MapSpan>
+                        <x:Arguments>
+                            <maps:Position>
+                                <x:Arguments>
+                                    <x:Double>36.9628066</x:Double>
+                                    <x:Double>-122.0194722</x:Double>
+                                </x:Arguments>
+                            </maps:Position>
+                            <x:Double>0.01</x:Double>
+                            <x:Double>0.01</x:Double>
+                        </x:Arguments>
+                    </maps:MapSpan>
+                </x:Arguments>
+                <maps:Map.Pins>
+                    <maps:Pin Label="Santa Cruz"
+                       Address="The city with a boardwalk"
+                       Type="Place">
+                        <maps:Pin.Position>
+                            <maps:Position>
+                                <x:Arguments>
+                                    <x:Double>36.9628066</x:Double>
+                                    <x:Double>-122.0194722</x:Double>
+                                </x:Arguments>
+                            </maps:Position>
+                        </maps:Pin.Position>
+                    </maps:Pin>
+                </maps:Map.Pins>
+            </maps:Map>-->
+            <Frame CornerRadius="10" BorderColor="Black" HasShadow="True" Padding="15" WidthRequest="180"
+                AbsoluteLayout.LayoutBounds="0.5,0.04" AbsoluteLayout.LayoutFlags="PositionProportional">
+                <StackLayout>
+                    <Label Text="{Binding Latitude, StringFormat='Latitude: {0:0.00}'}" 
+                           FontSize="Medium" HorizontalTextAlignment="Center"/>
+                    <Label Text="{Binding Longitude, StringFormat='Longitude: {0:0.00}'}" 
+                           FontSize="Medium" HorizontalTextAlignment="Center"/>
+                </StackLayout>
+            </Frame>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

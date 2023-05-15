@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GrassTouchersApp.Views.DetailsPage"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms">
+    <NavigationPage.TitleView>
+        <Label Text="{Binding Field, StringFormat='{0} Details'}" VerticalOptions="CenterAndExpand" FontSize="Title" TextColor="White"/>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <Frame Padding="10,30,10,10">
+                <microcharts:ChartView Chart="{Binding Graph}" HeightRequest="200" />
+            </Frame>
+            <Label Text="{Binding Field, StringFormat='{0} Data'}" HorizontalTextAlignment="Center" FontSize="Title" FontAttributes="Bold" Margin="0,10,0,0"/>
+            <CollectionView ItemsSource="{Binding Entries}" EmptyView="No Entries Available" Margin="20,10,20,20" ItemsUpdatingScrollMode="KeepScrollOffset">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="12" BackgroundColor="LightGray" Padding="16">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding EntryDate}" FontSize="Medium" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                                <Label Text="{Binding StringValue}" FontSize="Large" FontAttributes="Bold" VerticalOptions="Center" HorizontalOptions="End"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

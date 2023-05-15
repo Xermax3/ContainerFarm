@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GrassTouchersApp.Views.TelemetryForm"
+             Title="Update Telemetry Interval"
+             BackgroundColor="LightBlue">
+    <ContentPage.Content>
+        <StackLayout Margin="30">
+            <Label Text="Telemetry Interval" 
+                   HorizontalTextAlignment="Center" FontSize="40" FontAttributes="Bold" Margin="0,0,0,20"/>
+            <Label Text="Change how frequently you receive new data" 
+                   HorizontalTextAlignment="Center" FontSize="Subtitle" FontAttributes="Italic"/>
+            <StackLayout Orientation="Horizontal" Margin="40,60,40,40" HorizontalOptions="Center">
+                <Label Text="New interval:" FontSize="Medium" 
+                       HorizontalTextAlignment="End" VerticalTextAlignment="Center"/>
+                <Entry Keyboard="Numeric" Text="{Binding TelemetryInterval}" 
+                       HorizontalTextAlignment="Center" WidthRequest="60"/>
+            </StackLayout>
+
+            <Frame CornerRadius="20" HasShadow="True" Padding="0" Margin="80,0">
+                <Button Text="Update" Command="{Binding UpdateTelemetry}" FontSize="Medium" FontAttributes="Bold" BackgroundColor="White" Padding="25"/>
+            </Frame>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

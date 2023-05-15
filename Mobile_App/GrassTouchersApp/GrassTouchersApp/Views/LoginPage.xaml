@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GrassTouchersApp.Views.LoginPage" Title="JAC Farming - Login"
+             xmlns:vm="clr-namespace:Final_Project_Application.ViewModels"
+             x:DataType="vm:MainViewModel">
+    <NavigationPage.TitleView>
+        <Label Text="JAC Farming - Login" VerticalOptions="CenterAndExpand" FontSize="Title" TextColor="White"/>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <Image Source="loginbackground.png" Aspect="AspectFill" 
+                   AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="SizeProportional"/>
+            <Frame BackgroundColor="#44000000" 
+                   AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="SizeProportional"/>
+            <Label Text="Welcome to JAC Farming!" TextColor="White" FontSize="50" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="20"
+                   AbsoluteLayout.LayoutBounds="0.5,0.15" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+            <Frame VerticalOptions="End" CornerRadius="10" BackgroundColor="DeepSkyBlue" HasShadow="True" Margin="0"
+                   AbsoluteLayout.LayoutBounds="0.5,0.65" AbsoluteLayout.LayoutFlags="PositionProportional">
+                <StackLayout Spacing="8">
+                    <Label Text="Select a Portal" TextColor="White" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="0,0,0,10"/>
+                    <Button Text="Farm Technician Portal" VerticalOptions="FillAndExpand" BackgroundColor="White" CornerRadius="10" Padding="50,20" 
+                            Command="{Binding FarmTechnicianLogin}"/>
+                    <Button Text="Fleet Manager Portal" VerticalOptions="FillAndExpand" BackgroundColor="White" CornerRadius="10" Padding="50,20" 
+                            Command="{Binding FleetManagerLogin}"/>
+                </StackLayout>
+            </Frame>
+            <Label Text="© Grass Touchers 2022" TextColor="White" FontSize="Medium" FontAttributes="Bold"
+                   AbsoluteLayout.LayoutBounds="0.5,0.96" AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        </AbsoluteLayout>
+        
+    </ContentPage.Content>
+</ContentPage>
